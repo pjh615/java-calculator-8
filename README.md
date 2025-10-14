@@ -60,3 +60,14 @@
 - 커스텀 구분자로 숫자를 입력
 
 ### 기능 명세
+
+|     Class     |      Method      |  Input  | Output  |         Description          |
+|:-------------:|:----------------:|:-------:|:-------:|:----------------------------:|
+| InputHandler  |      input       |         | String  |      유저로부터 문자열을 입력받는다.       |
+| OutputHandler |      output      | Integer |         |        입력된 결과를 출력한다.         |
+|  Calculator   |    calculate     |         |         |        계산하는 로직을 구현한다.        |
+|   Validator   |    isNegative    | String  | boolean | 입력된 문자열 중 음수가 있는지 유효성을 검사한다. |
+|       -       | isValidDelimiter | String  | boolean |  입력된 문자열 중 구분자가 유효한지 검사한다.   |
+|    Parser     |                  |         |         |                              |
+|               |                  |         |         |                              |
+|               |                  |         |         |                              |
