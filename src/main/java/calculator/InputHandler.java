@@ -2,6 +2,9 @@ package calculator;
 
 import camp.nextstep.edu.missionutils.Console;
 
+/**
+ * 유저로 부터 입력을 받는 클래스
+ */
 public class InputHandler {
 
     public String input(){
