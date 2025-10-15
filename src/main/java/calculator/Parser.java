@@ -10,6 +10,12 @@ public class Parser {
     }
 
     public String[] parseByCustomDelimiter(String input) {
-        return input.split("[,:]");
+        int start = input.indexOf("//") + 2;
+        int end = input.indexOf("\\n");
+
+        String delimiter = input.substring(start, end);
+
+        String remain = input.substring(end + 2);
+        return remain.split(delimiter);
     }
 }
