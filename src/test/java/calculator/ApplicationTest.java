@@ -11,8 +11,8 @@ class ApplicationTest extends NsTest {
     @Test
     void 커스텀_구분자_사용() {
         assertSimpleTest(() -> {
-            run("//;\\n1");
-            assertThat(output()).contains("결과 : 1");
+            run("//?\\n1?2");
+            assertThat(output()).contains("결과 : 3");
         });
     }
 
@@ -22,6 +22,46 @@ class ApplicationTest extends NsTest {
             assertThatThrownBy(() -> runException("-1,2,3"))
                 .isInstanceOf(IllegalArgumentException.class)
         );
+    }
+
+    @Test
+    void 정상_테스트() {
+        assertSimpleTest(() -> {
+            run("1,2,3");
+            assertThat(output()).contains("결과 : 6");
+        });
+    }
+
+    @Test
+    void 기본_구분자_혼용_테스트() {
+        assertSimpleTest(() -> {
+            run("1:2,3");
+            assertThat(output()).contains("결과 : 6");
+        });
+    }
+
+    @Test
+    void 복수_특수문자_커스팀_구분자_테스트() {
+        assertSimpleTest(() -> {
+            run("//;!\\n1;!2");
+            assertThat(output()).contains("결과 : 3");
+        });
+    }
+
+    @Test
+    void 단일_문자_커스팀_구분자_테스트() {
+        assertSimpleTest(() -> {
+            run("//a\\n1a2a3");
+            assertThat(output()).contains("결과 : 6");
+        });
+    }
+
+    @Test
+    void 복수_문자_커스팀_구분자_테스트() {
+        assertSimpleTest(() -> {
+            run("//ab\\n1ab2ab3");
+            assertThat(output()).contains("결과 : 6");
+        });
     }
 
     @Override
