@@ -18,13 +18,15 @@ public class Parser {
         int end = input.indexOf("\\n");
 
         String delimiter = input.substring(start, end);
+        if (delimiter.isBlank()) {
+            throw new IllegalArgumentException("Invalid delimiter");
+        }
+
         String specialChars = "([\\Q" + "^$|(){}[]*+?.\\" + "\\E])";
         Matcher matcher = Pattern.compile(specialChars).matcher(delimiter);
         delimiter = matcher.replaceAll("\\\\$1");
-        System.out.println(delimiter);
-
-
         String remain = input.substring(end + 2);
+
         return remain.split(delimiter);
     }
 }
