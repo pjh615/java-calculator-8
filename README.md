@@ -88,16 +88,17 @@
 
 ### 기능 명세
 
-|     Class     |         Method          |  Input  |  Output  |         Description          |
-|:-------------:|:-----------------------:|:-------:|:--------:|:----------------------------:|
-| InputHandler  |          input          |         |  String  |      유저로부터 문자열을 입력받는다.       |
-| OutputHandler |         output          | Integer |          |        입력된 결과를 출력한다.         |
-|  Calculator   |        calculate        | String  | Integer  |        계산하는 로직을 구현한다.        |
-|   Validator   |       isNegative        | String  | boolean  | 입력된 문자열 중 음수가 있는지 유효성을 검사한다. |
-|       -       |    isInteger     | String  | boolean  |  입력된 문자열 중 구분자로 나눠진 부분이 유효한지 검사한다.   |
-|    Parser     | parseByDefaultDelimiter | String  | String[] | 입력된 문자열을 기본 구분자를 기준으로 파싱한다.  |
-|       -       | parseByCustomDelimiter  | String  | String[] | 입력된 문자열을 커스텀 구분자를 기준으로 파싱한다. |
-|   Converter   |     stringToInteger     | String  | Integer  |      입력된 문자열을 정수로 변환한다.      |
+|     Class     |         Method          |     Input     |  Output  |            Description            |
+|:-------------:|:-----------------------:|:-------------:|:--------:|:---------------------------------:|
+| InputHandler  |          input          |               |  String  |         유저로부터 문자열을 입력받는다.         |
+| OutputHandler |         output          |    Integer    |          |           입력된 결과를 출력한다.           |
+|  Calculator   |        calculate        |    String     | Integer  |          계산하는 로직을 구현한다.           |
+|   Validator   |       isNegative        |    String     | boolean  |   입력된 문자열 중 음수가 있는지 유효성을 검사한다.    |
+|       -       |        isInteger        |    String     | boolean  | 입력된 문자열 중 구분자로 나눠진 부분이 유효한지 검사한다. |
+|    Parser     | parseByDefaultDelimiter |    String     | String[] |    입력된 문자열을 기본 구분자를 기준으로 파싱한다.    |
+|       -       | parseByCustomDelimiter  |    String     | String[] |   입력된 문자열을 커스텀 구분자를 기준으로 파싱한다.    |
+|   Converter   |     stringToInteger     |    String     | Integer  |        입력된 문자열을 정수로 변환한다.         |
+|     Adder     |         addAll          | List<Integer> | Integer  |       입력된 정수 배열의 합계를 계산한다.        |
 
 ## Commit convention
 
@@ -117,23 +118,29 @@
 ## 체크리스트
 
 ### 과제 진행 요구 사항
+
 - [ ] 문자열 덧셈 계산기 저장소를 포크하고 클론하는 것으로 시작한다.
 - [ ] 기능을 구현하기 전 README.md에 구현할 기능 목록을 정리해 추가한다.
 - [ ] Git의 커밋 단위는 앞 단계에서 README.md에 정리한 기능 목록 단위로 추가한다. (AngularJS Git Commit Message Conventions을 참고해 커밋 메시지를 작성한다.)
 
 ### 기능 요구 사항
+
 - [ ] 쉼표(,) 또는 콜론(:)을 구분자로 가지는 문자열을 전달하는 경우 구분자를 기준으로 분리한 각 숫자의 합을 반환한다.
 - [ ] 앞의 기본 구분자(쉼표, 콜론) 외에 커스텀 구분자를 지정할 수 있다. 커스텀 구분자는 문자열 앞부분의 "//"와 "\n" 사이에 위치하는 문자를 커스텀 구분자로 사용한다.
 - [ ] 사용자가 잘못된 값을 입력할 경우 IllegalArgumentException을 발생시킨 후 애플리케이션은 종료되어야 한다.
 
 #### 입출력 요구 사항
+
 **입력**
+
 - [ ] 구분자와 양수로 구성된 문자열
 
 **출력**
+
 - [ ] 덧셈의 결과
 
 ### 프로그래밍 요구 사항
+
 - [ ] JDK 21 버전에서 실행 가능해야 한다.
 - [ ] 프로그램 실행의 시작점은 Application의 main()이다.
 - [ ] build.gradle 파일은 변경할 수 없으며, 제공된 라이브러리 이외의 외부 라이브러리는 사용하지 않는다.
@@ -143,5 +150,6 @@
     - [ ] 기본적으로 Java Style Guide를 원칙으로 한다.
 
 #### 라이브러리
+
 - [ ] camp.nextstep.edu.missionutils에서 제공하는 Console API를 사용하여 구현해야 한다.
     - [ ] 사용자가 입력하는 값은 camp.nextstep.edu.missionutils.Console의 readLine()을 활용한다.
