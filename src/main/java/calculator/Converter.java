@@ -18,7 +18,11 @@ public class Converter {
         List<Integer> result = new ArrayList<>();
         for (String token : tokens) {
             if(validator.isInteger(token)){
-                result.add(Integer.parseInt(token.trim()));
+                try {
+                    result.add(Integer.parseInt(token.trim()));
+                } catch (NumberFormatException e) {
+                    throw new IllegalArgumentException("Invalid integer value: " + token);
+                }
             }
         }
         return result;
