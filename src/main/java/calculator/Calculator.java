@@ -31,6 +31,10 @@ public class Calculator {
             throw new IllegalArgumentException("Negative number are not allowed");
         }
 
+        if(validator.isInteger(input)){
+            return Integer.parseInt(input.trim());
+        }
+
         // 커스텀 구분자 처리
         if (input.startsWith("//")) {
             String[] tokens = parser.parseByCustomDelimiter(input);
