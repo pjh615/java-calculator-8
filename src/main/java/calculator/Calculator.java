@@ -11,57 +11,42 @@ public class Calculator {
     private final Converter converter;
     private final Parser parser;
     private final Validator validator;
+    private final Adder adder;
 
     public Calculator() {
-        converter = new Converter();
-        parser = new Parser();
         validator = new Validator();
+        converter = new Converter(validator);
+        parser = new Parser();
+        adder = new Adder();
     }
 
     public Integer calculate(String input) {
         // 빈 문자열 처리
-        if(input.isBlank()){
+        if(input == null || input.isBlank()){
             return 0;
         }
 
         // 음수 처리
-        if(validator.isNegative()){
-            throw new IllegalArgumentException("Negative numbers are not allowed");
-        }
-
-        // 기본 구분자 처리
-        if (input.contains(",") || input.contains(":")) {
-            String[] tokens = parser.parseByDefaultDelimiter(input);
-            List<Integer> numbers = new ArrayList<>();
-            for (String token : tokens) {
-                numbers.add(Integer.parseInt(token.trim()));
-            }
-
-            Integer sum = 0;
-            for (Integer number : numbers) {
-                sum += number;
-            }
-            return sum;
+        if(validator.isNegative(input)){
+            throw new IllegalArgumentException("Negative number are not allowed");
         }
 
         // 커스텀 구분자 처리
         if (input.startsWith("//")) {
             String[] tokens = parser.parseByCustomDelimiter(input);
-            List<Integer> numbers = new ArrayList<>();
-            for (String token : tokens) {
-                numbers.add(Integer.parseInt(token.trim()));
-            }
-
-            Integer sum = 0;
-            for (Integer number : numbers) {
-                sum += number;
-            }
-            return sum;
+            List<Integer> integers = converter.stringToIntegers(tokens);
+            return adder.addAll(integers);
         }
 
+        // 기본 구분자 처리
+        if (input.contains(",") || input.contains(":")) {
+            String[] tokens = parser.parseByDefaultDelimiter(input);
+            List<Integer> integers = converter.stringToIntegers(tokens);
+            return adder.addAll(integers);
+        }
 
-
-        throw new IllegalArgumentException("");
+        // 그 외는 에러 처리
+        throw new IllegalArgumentException();
     }
 
 
