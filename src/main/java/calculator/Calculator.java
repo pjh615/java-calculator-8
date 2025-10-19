@@ -31,6 +31,7 @@ public class Calculator {
             throw new IllegalArgumentException("Negative number are not allowed");
         }
 
+        // 단일 숫자 처리
         if(validator.isInteger(input)){
             return Integer.parseInt(input.trim());
         }
