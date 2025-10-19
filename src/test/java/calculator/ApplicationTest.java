@@ -17,14 +17,6 @@ class ApplicationTest extends NsTest {
     }
 
     @Test
-    void 예외_테스트() {
-        assertSimpleTest(() ->
-            assertThatThrownBy(() -> runException("-1,2,3"))
-                .isInstanceOf(IllegalArgumentException.class)
-        );
-    }
-
-    @Test
     void 기본_구분자_혼용_테스트() {
         assertSimpleTest(() -> {
             run("1:2,3");
@@ -54,6 +46,30 @@ class ApplicationTest extends NsTest {
             run("//ab\\n1ab2ab3");
             assertThat(output()).contains("결과 : 6");
         });
+    }
+
+    @Test
+    void 단일_숫자_테스트() {
+        assertSimpleTest(() -> {
+            run("11");
+            assertThat(output()).contains("결과 : 11");
+        });
+    }
+
+    @Test
+    void 예외_테스트() {
+        assertSimpleTest(() ->
+                assertThatThrownBy(() -> runException("-1,2,3"))
+                        .isInstanceOf(IllegalArgumentException.class)
+        );
+    }
+
+    @Test
+    void 예외_커스텀_구분자_미정의() {
+        assertSimpleTest(() ->
+                assertThatThrownBy(() -> runException("//\\n1;2;3"))
+                        .isInstanceOf(IllegalArgumentException.class)
+        );
     }
 
     @Override
