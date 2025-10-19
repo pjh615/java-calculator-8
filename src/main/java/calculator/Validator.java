@@ -13,8 +13,8 @@ public class Validator {
 
     public boolean isInteger(String token){
         try {
-            Integer.parseInt(token);
-            return true;
+            int num = Integer.parseInt(token);
+            return num >= 0;
         } catch (NumberFormatException e) {
             return false;
         }
